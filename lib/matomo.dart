@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_user_agent/flutter_user_agent.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -319,10 +318,9 @@ class _Event {
 
     final locale = window.locale;
     map['lang'] = locale.toString();
-
-    map['h'] = DateFormat.H().format(_date);
-    map['m'] = DateFormat.m().format(_date);
-    map['s'] = DateFormat.s().format(_date);
+    map['h'] = _date.hour;
+    map['m'] = _date.minute;
+    map['s'] = _date.second;
     map['cdt'] = _date.toIso8601String();
 
     // Screen Resolution
